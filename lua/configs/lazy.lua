@@ -49,15 +49,7 @@ return {
 			})
 		end,
 	},
-	{
-		"EdenEast/nightfox.nvim",
-		lazy = false, -- make sure we load this during startup if it is your main colorscheme
-		priority = 1000, -- make sure to load this before all the other start plugins
-		config = function()
-			-- load the colorscheme here
-			--vim.cmd.colorscheme("duskfox")
-		end,
-	},
+
 	{
 		"williamboman/mason.nvim",
 		cmd = { "Mason", "MasonInstall", "MasonInstallAll", "MasonUpdate", "MasonUninstallAll" },
@@ -129,11 +121,11 @@ return {
 					end,
 				},
 				mapping = cmp.mapping.preset.insert({
-					["<C-K>"] = cmp.mapping.select_prev_item(), --previous suggestion
+					["<C-k>"] = cmp.mapping.select_prev_item(), --previous suggestion
 					["<C-j>"] = cmp.mapping.select_next_item(), -- next suggestion
 					["<C-b>"] = cmp.mapping.scroll_docs(-4),
 					["<C-f>"] = cmp.mapping.scroll_docs(4),
-					["<C-Space>"] = cmp.mapping.complete(), -- show completion suggestions
+					--["<C-Space>"] = cmp.mapping.complete(), -- show completion suggestions
 					["<C-e>"] = cmp.mapping.abort(), -- close completion window
 					["<CR>"] = cmp.mapping.confirm({ select = false }),
 				}),
@@ -154,38 +146,6 @@ return {
 		end,
 		config = function(_, opts)
 			require("conform").setup(opts)
-		end,
-	},
-	{
-		"rust-lang/rust.vim",
-		ft = "rust",
-		init = function()
-			vim.g.rustfmt_autosave = 1
-		end,
-	},
-	{
-		"mrcjkb/rustaceanvim",
-		version = "^4", -- Recommended
-		lazy = false, -- This plugin is already lazy
-		ft = "rust",
-		dependencies = {
-			"neovim/nvim-lspconfig",
-		},
-		config = function()
-			local bufnr = vim.api.nvim_get_current_buf()
-			vim.keymap.set("n", "<leader>a", function()
-				vim.cmd.RustLsp("codeAction") -- supports rust-analyzer's grouping
-				vim.cmd.RustLsp("debug")
-				vim.cmd.RustLsp("debuggables")
-				-- or, to run the previous debuggable:
-				vim.cmd.RustLsp({ "debuggables", bang = true })
-				-- or, to override the executable's args:
-				vim.cmd.RustLsp({ "debuggables", "arg1", "arg2" })
-				-- or vim.lsp.buf.codeAction() if you don't want grouping.
-			end, { silent = true, buffer = bufnr })
-			vim.api.nvim_create_user_command("RustDebuggables", function()
-				vim.cmd("RustLsp debuggables")
-			end, {})
 		end,
 	},
 	{
@@ -246,24 +206,7 @@ return {
 			require("dap-vscode-js").setup(opts)
 		end,
 	},
-	{
-		"oxfist/night-owl.nvim",
-		lazy = true, --false, -- make sure we load this during startup if it is your main colorscheme
-		--priority = 1000, -- make sure to load this before all the other start plugins
-		config = function()
-			-- load the colorscheme here
-			require("night-owl").setup() -- You can pass in your personal settings here.
-			-- vim.cmd.colorscheme("night-owl")
-		end,
-	},
-	{
-		"folke/tokyonight.nvim",
-		lazy = false,
-		priority = 1000,
-		config = function()
-			vim.cmd.colorscheme("tokyonight-storm")
-		end,
-	},
+
 	{
 		"nvim-lualine/lualine.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -272,6 +215,30 @@ return {
 		end,
 		config = function(_, opts)
 			require("lualine").setup(opts)
+		end,
+	},
+	{
+		"goolord/alpha-nvim",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		opts = function()
+			return require("configs.alpha")
+		end,
+	},
+	{
+		"lukas-reineke/indent-blankline.nvim",
+		main = "ibl",
+		opts = function()
+			return {
+				indent = {
+					char = "|",
+				},
+				scope = {
+					enabled = false,
+				},
+			}
+		end,
+		config = function(_, opts)
+			require("ibl").setup(opts)
 		end,
 	},
 }

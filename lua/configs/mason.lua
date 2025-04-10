@@ -13,7 +13,7 @@ return {
 		"astro-language-server",
 		"html-lsp",
 		"css-lsp",
-		"css-variables-languague-server",
+		"css-variables-language-server",
 		"cssmodules-language-server",
 	}, vim.fn.has("unix") == 1 and {
 		"clangd",

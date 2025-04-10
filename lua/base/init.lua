@@ -1,14 +1,14 @@
 --Basic settings
-
+vim.cmd.colorscheme("default")
 vim.g.mapleader = " "
 
 vim.wo.relativenumber = true
 vim.wo.number = true
 --Mappings
 vim.keymap.set("n", "<leader>e", vim.cmd.NvimTreeFocus)
-vim.keymap.set("n", "<C-n>", vim.cmd.NvimTreeToggle)
-vim.keymap.set("n", "<leader>1", vim.cmd.bfirst)
-vim.keymap.set("n", "<leader>0", vim.cmd.blast)
+vim.keymap.set("n", "<leader>ex", vim.cmd.NvimTreeToggle)
+--vim.keymap.set("n", "<leader>1", vim.cmd.bfirst)
+--vim.keymap.set("n", "<leader>0", vim.cmd.blast)
 vim.keymap.set("n", "<Tab>", vim.cmd.bnext)
 vim.keymap.set("n", "<S-Tab>", vim.cmd.bprevious)
 vim.keymap.set("n", "<leader>dt", vim.cmd.DapToggleBreakpoint)
@@ -24,10 +24,11 @@ end, { desc = "Cerrar debugger" })
 vim.keymap.set("n", "<leader>dp", function()
 	require("dap-python").test_method()
 end)
-vim.keymap.set("n", "<leader>o", "o<Esc>k")
+--vim.keymap.set("n", "<leader>o", "o<Esc>k")
 vim.keymap.set("n", "<leader>x", vim.cmd.bdelete)
-vim.keymap.set("v", "<leader>y", '"+yy', { noremap = true })
-vim.keymap.set("n", "<leader>dy", "3<cmd>lua vim.diagnostic.open_float()<CR>", { noremap = true })
+--vim.keymap.set("v", "<leader>y", '"+yy', { noremap = true })
+--vim.keymap.set("n", "<leader>d", "3<cmd>lua vim.diagnostic.open_float()<CR>", { noremap = true })
 --vim.o.timeoutlen=200
 -- Lazy requirement
+
 require("base.plugins.lazy")
