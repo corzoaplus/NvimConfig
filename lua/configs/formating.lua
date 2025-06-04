@@ -1,4 +1,3 @@
--- https://www.josean.com/posts/neovim-linting-and-formatting
 local conform = require("conform")
 
 vim.keymap.set({ "n", "v" }, "<leader>mp", function()

@@ -1,45 +1,43 @@
+local alpha = require("alpha")
 local dashboard = require("alpha.themes.dashboard")
 
+-- Header (ASCII Art NEOVIM)
 dashboard.section.header.val = {
-	[[.     .       .  .   . .   .   . .    +  .]],
-	[[  .     .  :     .    .. :. .___---------___.]],
-	[[       .  .   .    .  :.:. _".^ .^ ^.  '.. :"-_. .]],
-	[[    .  :       .  .  .:../:            . .^  :.:\.]],
-	[[        .   . :: +. :.:/: .   .    .        . . .:\]],
-	[[ .  :    .     . _ :::/:               .  ^ .  . .:\]],
-	[[  .. . .   . - : :.:./.                        .  .:\]],
-	[[  .      .     . :..|:                    .  .  ^. .:|]],
-	[[    .       . : : ..||        .                . . !:|]],
-	[[  .     . . . ::. ::\(                           . :)/]],
-	[[ .   .     : . : .:.|. ######              .#######::|]],
-	[[  :.. .  :-  : .:  ::|.#######           ..########:|]],
-	[[ .  .  .  ..  .  .. :\ ########          :######## :/]],
-	[[  .        .+ :: : -.:\ ########       . ########.:/]],
-	[[    .  .+   . . . . :.:\. #######       #######..:/]],
-	[[      :: . . . . ::.:..:.\           .   .   ..:/]],
-	[[   .   .   .  .. :  -::::.\.       | |     . .:/]],
-	[[      .  :  .  .  .-:.":.::.\             ..:/]],
-	[[ .      -.   . . . .: .:::.:.\.           .:/]],
-	[[.   .   .  :      : ....::_:..:\   ___.  :/]],
-	[[   .   .  .   .:. .. .  .: :.:.:\       :/]],
-	[[     +   .   .   : . ::. :.:. .:.|\  .:/|]],
-	[[     .         +   .  .  ...:: ..|  --.:|]],
-	[[.      . . .   .  .  . ... :..:.."(  ..)"]],
-	[[ .   .       .      :  .   .: ::/  .  .::\]],
+	[[ ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗ ]],
+	[[ ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║ ]],
+	[[ ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║ ]],
+	[[ ██║╚██╗██║██╔══╝  ██║   ██║██║   ██║██║██║╚██╔╝██║ ]],
+	[[ ██║ ╚████║███████╗╚██████╔╝╚██████╔╝██║██║ ╚═╝ ██║ ]],
+	[[ ╚═╝  ╚═══╝╚══════╝ ╚═════╝  ╚═════╝ ╚═╝╚═╝     ╚═╝ ]],
 }
-
--- Opcional: agrega un color personalizado
 dashboard.section.header.opts = {
 	position = "center",
-	hl = "Type", -- Puedes cambiar esto por 'String', 'Constant', 'Function', etc., o definir uno tú mismo
-}
-dashboard.section.buttons.val = {
-	dashboard.button("e", "Nuevo archivo", ":ene <BAR> startinsert <CR>"),
-	dashboard.button("f", "Buscar archivo", ":Telescope find_files<CR>"),
-	dashboard.button("q", "Salir", ":qa<CR>"),
+	hl = "Type",
 }
 
-dashboard.section.footer.val = "Hecho en Debian sin entorno gráfico"
+-- Buttons
+dashboard.section.buttons.val = {
+	dashboard.button("e", "  New file", ":ene <BAR> startinsert <CR>"),
+	dashboard.button("f", "󰱼  Find file", ":Telescope find_files<CR>"),
+	dashboard.button("r", "  Recent files", ":Telescope oldfiles<CR>"),
+	dashboard.button("s", "  Settings", ":e $MYVIMRC<CR>"),
+	dashboard.button("q", "  Quit", ":qa<CR>"),
+}
+dashboard.section.buttons.opts = {
+	position = "center",
+}
+
+-- Footer
+dashboard.section.footer.val = "Made with ❤️"
+dashboard.section.footer.opts = {
+	position = "center",
+	hl = "Number",
+}
+
+-- Options
 dashboard.opts.opts.noautocmd = true
+
+-- Setup
+alpha.setup(dashboard.opts)
 
 return dashboard.opts
